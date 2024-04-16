@@ -1,0 +1,17 @@
+{
+  "name": "api-rest-node-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/limaalan/projeto_node.git",
+  "author": "Alan Lima <alanlimamarques6@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
