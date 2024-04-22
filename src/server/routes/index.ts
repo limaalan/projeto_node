@@ -10,11 +10,16 @@ router.get('/', (req,res)=>{
     return res.send ("Hello world!");
 });
 
-//router.get('/cidades', CidadesController.getAll);
+router.get('/cidades',
+ CidadesController.getAllValidation,
+ CidadesController.getAll,
+); // Obtém todas cidades 
+
 router.post('/cidades',
  CidadesController.createValidation,
  CidadesController.create,
-);
+); // Cria uma nova cidade
+
 
 
 
