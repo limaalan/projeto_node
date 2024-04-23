@@ -4,25 +4,21 @@ import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
 
 
-interface IQueryProps {
-    page? : number ;
-    limit? : number ;
-    filter? : string;
+interface IParamProps {
+    id? : number ;
 }
 
-const queryValidation:yup.ObjectSchema<IQueryProps> = yup.object().shape({
-    page:   yup.number().optional().moreThan(0) ,
-    limit:  yup.number().optional().moreThan(0) ,
-    filter: yup.string().optional() ,
+const paramsValidation:yup.ObjectSchema<IParamProps> = yup.object().shape({
+    id:   yup.number().required() ,
 });//Cria a validação da query
 
-export const getAllValidation = validation({
-    query : queryValidation,
+export const getByIdValidation = validation({
+    params : paramsValidation,
 }); // Passando a validação para uma função que cria o midddleware
 
-export const getAll:RequestHandler = async (req:Request<{},{},{},IQueryProps>, res) => { 
+export const getById:RequestHandler = async (req:Request<IParamProps>, res:Response) => { 
    
-    console.log(req.query);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não Implementado!");
+    console.log(req.params);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("getbyid Não Implementado!");
 
 }
