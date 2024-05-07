@@ -4,25 +4,29 @@ import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
 
 
-interface IQueryProps {
-    page? : number ;
-    limit? : number ;
-    filter? : string;
+interface IParamProps {
+    id? : number;
+}
+interface IBodyProps {
+    nome : string;
 }
 
-const queryValidation:yup.ObjectSchema<IQueryProps> = yup.object().shape({
-    page:   yup.number().optional().moreThan(0) ,
-    limit:  yup.number().optional().moreThan(0) ,
-    filter: yup.string().optional() ,
-});//Cria a validação da query
+const paramsValidation:yup.ObjectSchema<IParamProps> = yup.object().shape({
+    id:   yup.number().integer().required().moreThan(0) ,
+});//Cria a validação dos parâmetros
 
-export const getAllValidation = validation({
-    query : queryValidation,
+const bodyValidation:yup.ObjectSchema<IBodyProps> = yup.object().shape({
+    nome:   yup.string().required().min(3) ,
+});//Cria a validação dos parâmetros
+
+
+export const updateByIdValidation = validation({
+    body : bodyValidation,
+    params: paramsValidation,
 }); // Passando a validação para uma função que cria o midddleware
 
-export const getAll:RequestHandler = async (req:Request<{},{},{},IQueryProps>, res) => { 
-   
-    console.log(req.query);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não Implementado!");
-
+export const updateById:RequestHandler = async (req:Request<IParamProps,{},IBodyProps>, res:Response) => { 
+    console.log(req.params);
+    console.log(req.body);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("updateById Não Implementado!");
 }

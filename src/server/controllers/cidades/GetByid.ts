@@ -9,8 +9,8 @@ interface IParamProps {
 }
 
 const paramsValidation:yup.ObjectSchema<IParamProps> = yup.object().shape({
-    id:   yup.number().required() ,
-});//Cria a validação da query
+    id:   yup.number().integer().required().moreThan(0) ,
+});//Cria a validação dos parâmetros
 
 export const getByIdValidation = validation({
     params : paramsValidation,
