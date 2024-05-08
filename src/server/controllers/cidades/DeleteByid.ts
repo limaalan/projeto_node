@@ -19,6 +19,6 @@ export const deleteByIdValidation = validation({
 export const deleteById:RequestHandler = async (req:Request<IParamsProps>, res:Response) => { 
    
     console.log(req.params)
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("deleteById Não Implementado!");
+    return res.status(StatusCodes.OK).send("deleteById Não Implementado!");
 
 }
