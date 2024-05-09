@@ -20,9 +20,18 @@ export const getAllValidation = validation({
     query : queryValidation,
 }); // Passando a validação para uma função que cria o midddleware
 
-export const getAll:RequestHandler = async (req:Request<{},{},{},IQueryProps>, res) => { 
-   
-    console.log(req.query);
-    return res.status(StatusCodes.OK).send("Getall Não Implementado!");
+export const getAll:RequestHandler = async (req:Request<{},{},{},IQueryProps>, res:Response) => { 
+   //Para mock dos testes
+    res.setHeader('access-control-expose-headers','x-total-count');
+    res.setHeader('x-total-count',1);
 
-}
+    console.log(req.query);
+    //return res.status(StatusCodes.OK).send("Getall Não Implementado!");
+    return res.status(StatusCodes.OK).json([
+        {
+            id : 1,
+            nome : 'Juranda',
+        }
+    ]);
+
+};
