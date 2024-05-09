@@ -28,5 +28,5 @@ export const updateByIdValidation = validation({
 export const updateById:RequestHandler = async (req:Request<IParamProps,{},IBodyProps>, res:Response) => { 
     console.log(req.params);
     console.log(req.body);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("updateById Não Implementado!");
+    return res.status(StatusCodes.OK).send("updateById Não Implementado!");
 }
