@@ -7,7 +7,7 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.cidade,table =>{
         table.bigIncrements('id').primary().index();
-        table.string('nome',150).index().notNullable();
+        table.string('nome',150).checkLength('<=',150).index().notNullable();
         table.comment('Tabela de Cidades do sistema') // Comentário 
     }).then(()=>{
         console.log(`#Create table ${ETableNames.cidade}`); // Log no terminal para confirmar que deu certo a migrate
