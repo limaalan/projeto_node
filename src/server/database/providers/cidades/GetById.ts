@@ -3,9 +3,9 @@ import {Knex} from "../../knex";
 import { ETableNames } from "../../ETableNames";
 
 
-export const create = async(id:number):Promise<ICidade | Error> => {
+export const getById = async(id:number):Promise<ICidade | Error> => {
     try{
-        const[result] = await Knex(ETableNames.cidade)
+        const result = await Knex(ETableNames.cidade)
             .select('id','nome')
             .where('id','=',id)
             .first();
