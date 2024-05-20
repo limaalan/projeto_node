@@ -11,7 +11,7 @@ describe ('Cidades - DeleteById', ()=>{
 
         //Tenta deletar a cidade criada
         const resApagada = await testServer.delete(`/cidades/${res1.body}`);
-        expect(resApagada.statusCode).toEqual(StatusCodes.OK); 
+        expect(resApagada.statusCode).toEqual(StatusCodes.NO_CONTENT); 
     });
 
     it('Tenta deletar registro sem id',async ()=> {

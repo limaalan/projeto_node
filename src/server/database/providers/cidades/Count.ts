@@ -1,4 +1,3 @@
-import { ICidade } from "../../models";
 import {Knex} from "../../knex";
 import { ETableNames } from "../../ETableNames";
 import { number } from "yup";

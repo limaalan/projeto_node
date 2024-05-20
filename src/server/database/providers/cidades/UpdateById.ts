@@ -6,7 +6,7 @@ import { ETableNames } from "../../ETableNames";
 export const updateById = async(cidade:ICidade):Promise<void | Error> => {
     try{
         const result = await Knex(ETableNames.cidade)
-        .update(cidade.nome)
+        .update(cidade)
         .where('id','=',cidade.id);
 
         // Para lidar com os retornos do SQLITE , que retorna o número ou objeto 
