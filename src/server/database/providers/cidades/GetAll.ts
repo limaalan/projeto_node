@@ -9,8 +9,8 @@ export const getAll = async(page:number, limit:number, filter:string , id = 0):P
             .select('*')
             .where('id','=',id)
             .orWhere('nome','like',`%${filter}%`) // % para qualquer coisa antes ou depois.
-            .offset((page-1)*limit);
-
+            .offset((page-1)*limit)
+            .limit(limit);
         if (id>0 && result.every((item: { id: number; }) => item.id !== id)){ // diferente aqui
             const resultById= await Knex(ETableNames.cidade)
                 .select('*')
