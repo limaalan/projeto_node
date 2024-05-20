@@ -13,7 +13,7 @@ describe ('Cidades - UpdateById', ()=>{ //id:   yup.number().integer().required(
             .put(`/cidades/${res1.body}`)
             .send({nome: 'Caxias do Sul'});
 
-        expect(resUpdate.statusCode).toEqual(StatusCodes.OK); 
+        expect(resUpdate.statusCode).toEqual(StatusCodes.NO_CONTENT); 
     });
 
     it('Tenta fazer Update de um registro com id inválido',async ()=> {
