@@ -2,7 +2,6 @@ import { IPessoa } from "../../models";
 import {Knex} from "../../knex";
 import { ETableNames } from "../../ETableNames";
 
-// TODO : ALTERAR
 export const updateById = async(pessoa:IPessoa):Promise<void | Error> => {
     try{
          // Checando a integridade referencial 
