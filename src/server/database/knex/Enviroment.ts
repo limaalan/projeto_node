@@ -25,5 +25,29 @@ export const test:Knex.Config = {
     connection:':memory:' // Arquivos não ficam salvos, útil para os testes
 };
 export const production:Knex.Config = {
-    ...development,
+    client : 'pg',
+    useNullAsDefault : true,
+    connection:{
+        host:process.env.POSTGRES_HOST,
+        user:process.env.POSTGRES_USER,
+        password:process.env.POSTGRES_PASSWORD,
+        database:process.env.POSTGRES_DATABASE,
+        ssl:{rejectUnauthorized:false},
+    },
+    migrations:{
+        directory:path.resolve(__dirname,'..','migrations')
+    },
+    seeds:{
+        directory:path.resolve(__dirname,'..','seeds')
+    },
+    pool: {
+        afterCreate: (connection: any, done: Function) => {
+          connection.query("SET CONSTRAINTS ALL IMMEDIATE;", (error: any) => {
+            if (error) {
+              console.error("Error enabling foreign key constraints:", error);
+            }
+          });
+          done();
+        },
+      },
 };
