@@ -8,7 +8,7 @@ export async function up(knex: Knex) {
     .createTable(ETableNames.usuario,table =>{
         table.bigIncrements('id').primary().index();
         table.string('nome').notNullable().checkLength('>=',3).checkLength('<=',100);
-        table.string('senha').notNullable().checkLength('>',6);
+        table.string('senha').notNullable().checkLength('>=',6);
         table.string('email').index().notNullable().unique().checkLength('>',5);
 
         table.comment('Tabela de usuarios do sistema') // Comentário 
