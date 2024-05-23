@@ -1,10 +1,10 @@
 import { Request, RequestHandler, Response, json, query } from "express"
-import { StatusCodes } from "http-status-codes";
+import { ACCEPTED, StatusCodes } from "http-status-codes";
 import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
 import { IUsuario } from "../../database/models";
 import { UsuariosProvider } from "../../database/providers/usuarios";
-import { PasswordCrypto } from "../../shared/services";
+import { JWTService, PasswordCrypto } from "../../shared/services";
 
 
 
@@ -43,6 +43,13 @@ export const signIn:RequestHandler = async (req:Request<{},{},IBodyProps>, res) 
             
         })
     } else {
+        const accessToken = JWTService.sign({uid:result.id});
+        if (accessToken ==='JWT_SECRET_NOT_FOUND'){
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                errors:{default:'Erro ao gerar token'}
+            })
+
+        }
         return res.status(StatusCodes.OK).json({
             accessToken:'teste.teste.teste'
         })
