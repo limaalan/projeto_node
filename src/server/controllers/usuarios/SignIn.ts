@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
 import { IUsuario } from "../../database/models";
 import { UsuariosProvider } from "../../database/providers/usuarios";
+import { PasswordCrypto } from "../../shared/services";
 
 
 
@@ -34,7 +35,7 @@ export const signIn:RequestHandler = async (req:Request<{},{},IBodyProps>, res) 
         })
     }
 
-    if (senha !== result.senha){
+    if (! await PasswordCrypto.verifyPassword(senha,result.senha)){
         return res.status(StatusCodes.UNAUTHORIZED).json({
             errors: {
                 default: "Email ou senha inválidos!"
