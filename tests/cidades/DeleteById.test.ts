@@ -23,7 +23,7 @@ describe ('Cidades - DeleteById', ()=>{
         expect (res1.statusCode).toEqual(StatusCodes.CREATED);
 
         //Tenta deletar a cidade criada
-        const resApagada = await testServer.delete(`/cidades/${res1.body}`);
+        const resApagada = await testServer.delete(`/cidades/${res1.body}`).set({Authorization:`Bearer ${accessToken}`});
         expect(resApagada.statusCode).toEqual(StatusCodes.NO_CONTENT); 
     });
 
@@ -56,6 +56,7 @@ describe ('Cidades - DeleteById', ()=>{
         //Cria uma cidade
         const res1 = await testServer
             .post('/cidades')
+            .set({Authorization:`Bearer ${accessToken}`})
             .send({nome : 'Juranda'});
         expect (res1.statusCode).toEqual(StatusCodes.CREATED);
 

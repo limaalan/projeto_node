@@ -21,6 +21,7 @@ describe ('Pessoas - Create', ()=>{
 
         const resCidade = await testServer
             .post('/cidades')
+            .set({Authorization:`Bearer ${accessToken}`})
             .send({nome:'Teste'})
         cidadeId = resCidade.body;
     });
@@ -33,7 +34,7 @@ describe ('Pessoas - Create', ()=>{
             .send({
                 email: 'umemail@mail.com',
                 cidadeId,
-                nomeCompleto:'José da Silva',
+                nomeCompleto:'José da Silva'
 
         });
             
@@ -84,6 +85,6 @@ describe ('Pessoas - Create', ()=>{
             
         //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.UNAUTHORIZED); 
-        expect(res1.body).toHaveProperty('errors.body');
+        expect(res1.body).toHaveProperty('errors.default');
     });
 });

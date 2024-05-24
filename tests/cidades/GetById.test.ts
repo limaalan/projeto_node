@@ -48,6 +48,6 @@ describe ('Cidades - GetById', ()=>{
     it('GetById Cidades sem chave de acesso',async ()=> {
         const res1 = await testServer.get('/cidades/1');
         expect(res1.statusCode).toEqual(StatusCodes.UNAUTHORIZED);
-        expect(res1.body).toHaveProperty('errors.body') 
+        expect(res1.body).toHaveProperty('errors.default') 
     });
 });
