@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
+import { JWTService } from "../services";
 
 export const ensureAuthenticated:RequestHandler =async (req, res, next) =>{
     const {authorization} = req.headers;
@@ -18,12 +19,19 @@ export const ensureAuthenticated:RequestHandler =async (req, res, next) =>{
         });
     }
     // Checa se o token é válido
-    if(token!=="teste.teste.teste"){
+    const JWTData = JWTService.verify(token)
+    if(JWTData==="JWT_SECRET_NOT_FOUND"){
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors:{default:"Erro ao gerar secret"}
+        })
+    }
+
+    if(JWTData==="INVALID_TOKEN"){
         return res.status(StatusCodes.UNAUTHORIZED).json({
             errors:{default:"Não autenticado!"}
         })
     }
-
+    req.headers.idUsuario = JWTData.uid.toString();
     return next();
 
 };

@@ -42,19 +42,17 @@ export const signIn:RequestHandler = async (req:Request<{},{},IBodyProps>, res) 
             }
             
         })
-    } else {
-        const accessToken = JWTService.sign({uid:result.id});
-        if (accessToken ==='JWT_SECRET_NOT_FOUND'){
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-                errors:{default:'Erro ao gerar token'}
-            })
-
-        }
-        return res.status(StatusCodes.OK).json({
-            accessToken:'teste.teste.teste'
-        })
     }
 
-    return res.status(StatusCodes.CREATED).json(result); // Caso deu certo retorna o id do usuario criado
+    const accessToken = JWTService.sign({uid:result.id});
+    if (accessToken ==='JWT_SECRET_NOT_FOUND'){
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors:{default:'Erro ao gerar token'}
+        })
+
+    }
+    return res.status(StatusCodes.OK).json({ accessToken:accessToken })
+    
+
 
 }
