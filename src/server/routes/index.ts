@@ -7,7 +7,35 @@ import { ensureAuthenticated } from '../shared/middlewares';
 const router = Router();
 
 router.get('/', (req,res)=>{
-    return res.send ("Hello world!");
+    const html = `<h1> API Node com Typescript</h1>
+    <h2>Rotas disponíveis  :</h2>
+    <strong> Privadas :</strong>
+    <ul >
+        <li> GET /cidades</li>
+        <li> POST /cidades</li>
+        <li> GET /cidades:id</li>
+        <li> PUT /cidades:id</li>
+        <li> DELETE /cidades:id</li>
+    </ul>
+    <ul>
+        
+    
+        <li> GET /pessoas</li>
+        <li> POST /pessoas</li>
+        <li> GET /pessoas:id</li>
+        <li> PUT /pessoas:id</li>
+        <li> DELETE /pessoas:id</li>
+    </ul>
+    
+    <strong>Públicas : Login </strong>
+    <ul>
+        
+    
+        <li> POST /entrar</li>
+        <li> POST /cadastrar</li>
+        
+    </ul>`
+    return res.send (html);
 });
 
 //Rotas de cidades, privadas
