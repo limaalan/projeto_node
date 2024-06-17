@@ -1,11 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import {testServer} from '../jest.setup';
-/*
-    id: yup.number().required().integer().moreThan(0),
-    email : yup.string().required().email(),
-    cidadeId: yup.number().required().integer().moreThan(0),
-    nomeCompleto: yup.string().required().min(3).max(150) ,
-*/
+
 describe ('Pessoas - Create', ()=>{
     let accessToken = '';
     let cidadeId :number|undefined = undefined;
@@ -38,7 +33,6 @@ describe ('Pessoas - Create', ()=>{
 
         });
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.CREATED); 
         expect(typeof res1.body).toEqual('number');
     });
@@ -83,7 +77,6 @@ describe ('Pessoas - Create', ()=>{
 
         });
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.UNAUTHORIZED); 
         expect(res1.body).toHaveProperty('errors.default');
     });

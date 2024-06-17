@@ -22,7 +22,7 @@ describe ('Cidades - GetById', ()=>{
         expect(res1.statusCode).toEqual(StatusCodes.OK); 
     });
        
-    it('GetById Cidades com id inválido ',async ()=> { // Number , integer, required, morethan(0)
+    it('GetById Cidades com id inválido ',async ()=> {
         const res1 = await testServer
             .get('/cidades/a')
             .set({Authorization:`Bearer ${accessToken}`});

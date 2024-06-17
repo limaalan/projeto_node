@@ -40,7 +40,6 @@ export const getAll:RequestHandler = async (req:Request<{},{},{},IQueryProps>, r
     res.setHeader('x-total-count',count);
 
 
-    console.log(count, req.query,result);
     return res.status(StatusCodes.OK).json(result);
 
 };

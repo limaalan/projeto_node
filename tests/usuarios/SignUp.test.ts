@@ -37,7 +37,6 @@ describe ('Usuarios - Create', ()=>{
                 senha:"1234567"
             });
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST); 
         expect(res1.body).toHaveProperty('errors.body.email');
     });
@@ -51,7 +50,6 @@ describe ('Usuarios - Create', ()=>{
                 senha:"1234567"
             });
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST); 
         expect(res1.body).toHaveProperty('errors.body.email');
     });
@@ -65,7 +63,6 @@ describe ('Usuarios - Create', ()=>{
                 senha:"1234567"
             });
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST); 
         expect(res1.body).toHaveProperty('errors.body.nome');
     });
@@ -79,7 +76,6 @@ describe ('Usuarios - Create', ()=>{
                 senha:"12345"
             });
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST); 
         expect(res1.body).toHaveProperty('errors.body.senha');
     });

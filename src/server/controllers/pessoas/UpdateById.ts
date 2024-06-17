@@ -37,7 +37,5 @@ export const updateById:RequestHandler = async (req:Request<IParamProps,{},IBody
         errors:{default:result.message}
     })
     
-    console.log(req.params);
-    console.log(req.body);
     return res.status(StatusCodes.NO_CONTENT).json(result);
 }

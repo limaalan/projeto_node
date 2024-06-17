@@ -10,7 +10,6 @@ export const getByEmail = async(email:string):Promise<IUsuario | Error> => {
             .where('email','=',email)
             .first();
 
-        // Para lidar com os retornos do SQLITE , que retorna o número ou objeto 
         if ( result ) return result;
         return new Error('Registro não encontrado');
   
