@@ -36,7 +36,6 @@ export const getById:RequestHandler = async (req:Request<IParamProps>, res:Respo
         });
     };
    
-    console.log(req.params);
     return res.status(StatusCodes.OK).json(result);
 
 }

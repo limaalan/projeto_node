@@ -10,7 +10,6 @@ export const getById = async(id:number):Promise<ICidade | Error> => {
             .where('id','=',id)
             .first();
 
-        // Para lidar com os retornos do SQLITE , que retorna o número ou objeto 
         if ( result ) return result;
         return new Error('Registro não encontrado');
   

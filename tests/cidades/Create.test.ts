@@ -20,7 +20,6 @@ describe ('Cidades - Create', ()=>{
             .set({Authorization:`Bearer ${accessToken}`})
             .send({nome: 'Caxias do Sul'});
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.CREATED); 
         expect(typeof res1.body).toEqual('number');
     });
@@ -31,7 +30,6 @@ describe ('Cidades - Create', ()=>{
             .set({Authorization:`Bearer ${accessToken}`})
             .send({nome: 'Ca'});
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST); 
         expect(res1.body).toHaveProperty('errors.body.nome');
     });
@@ -40,7 +38,6 @@ describe ('Cidades - Create', ()=>{
             .post('/cidades')
             .send({nome: 'Caxias do Sul'});
             
-        //Para no primeiro que deu erro
         expect(res1.statusCode).toEqual(StatusCodes.UNAUTHORIZED); 
         expect(res1.body).toHaveProperty('errors.default');
     });

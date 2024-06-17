@@ -35,7 +35,6 @@ export const deleteById:RequestHandler = async (req:Request<IParamsProps>, res:R
             }
         })
     }
-    console.log(req.params)
     return res.status(StatusCodes.NO_CONTENT).send();
 
 };

@@ -16,7 +16,6 @@ const bodyValidation:yup.ObjectSchema<IBodyProps> = yup.object().shape({
 
 export const createValidation = validation({
     body : bodyValidation,
-    //query : queryValidation,
 }); // Passando a validação para uma função que cria o midddleware
 
 export const create:RequestHandler = async (req:Request<{},{},IBodyProps>, res) => { 

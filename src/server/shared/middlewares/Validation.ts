@@ -7,13 +7,8 @@ type TProperty = 'body'|'header'|'params'|'query'
 type TAllSchemas = Record<TProperty,ObjectSchema<any>>;
 
 type TValidation = (schemas:Partial<TAllSchemas>) => RequestHandler ; // Recebe tipo de campo e esquema a validar , Partial deixa que os campos não sejam obrigatórios
-// interface TValidation {
-//     (): RequestHandler
-// } // outra forma de declarar o tipo de
-
 
 export const validation:TValidation = (schemas) => async (req,res,next) => {  
-    //console.log (schemas);
     const errorsResult : Record<string, Record<string, string>> = {};
 
     Object.entries(schemas).forEach(([key,schema])=> {    

@@ -4,16 +4,14 @@ import './shared/services/TranslationsYup';
 import cors from 'cors';
 import {router} from './routes';
 
-
 const server = express();
 
 server.use(cors({
-    origin:process.env.ENABLED_CORS?.split(';')||[] // Lista de todos os endereços que é permitido fazer chamada para esta api
+    // Lista de todos os endereços que é permitido fazer chamada para esta api
+    origin:process.env.ENABLED_CORS?.split(';')||[]
 }));
 server.use(express.json());
 
 server.use(router);
-
-//Configurações do servidor vão aqui
 
 export {server};

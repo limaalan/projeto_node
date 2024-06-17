@@ -9,7 +9,6 @@ export const getById = async(id:number):Promise<IPessoa | Error> => {
             .where('id','=',id)
             .first();
 
-        // Para lidar com os retornos do SQLITE , que retorna o número ou objeto 
         if ( result ) return result;
         return new Error('Registro de pessoa não encontrado');
   

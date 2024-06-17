@@ -56,7 +56,7 @@ describe ('pessoas - GetById', ()=>{
         expect(resGetApagado.body).toHaveProperty('errors.default');
     });
        
-    it('GetById pessoas com id inválido ',async ()=> { // Number , integer, required, morethan(0)
+    it('GetById pessoas com id inválido ',async ()=> { 
         const res1 = await testServer.get('/pessoas/a').set({Authorization:`Bearer ${accessToken}`});
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
         expect(res1.body) .toHaveProperty('errors.params.id');
