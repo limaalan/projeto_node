@@ -8,7 +8,6 @@
   "private": false,
   "scripts": {
     "start": "yarn ts-node-dev ./src/index.ts",
-    "test": "jest",
     "production": "node ./build/index.js",
     "postinstall": "tsc",
     "knex:migrate": "yarn knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:latest",

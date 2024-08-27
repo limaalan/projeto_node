@@ -16,4 +16,7 @@
 * http-status-codes
 
 ## Rotas
-* 
+  
+
+  // --- ROTA PARA LISTAR TEMPERATURA POR PLACA
+  

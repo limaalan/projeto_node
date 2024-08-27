@@ -1,5 +1,4 @@
 export enum ETableNames{
-    cidade = 'cidade',
-    pessoa = 'pessoa',
-    usuario = 'usuario',
+    leitura = 'leitura',
+    placa = 'placa'
 }

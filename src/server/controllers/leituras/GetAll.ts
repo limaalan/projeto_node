@@ -2,18 +2,16 @@ import { Request, RequestHandler, Response, query } from "express"
 import { StatusCodes } from "http-status-codes";
 import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
-import { CidadesProvider } from "../../database/providers/cidades";
+import { LeiturasProvider } from "../../database/providers/leituras";
 
 
 interface IQueryProps {
-    id?:number;
     page? : number ;
     limit? : number ;
     filter? : string;
 }
 
 const queryValidation:yup.ObjectSchema<IQueryProps> = yup.object().shape({
-    id:     yup.number().optional().integer().default(0),
     page:   yup.number().optional().moreThan(0) ,
     limit:  yup.number().optional().moreThan(0) ,
     filter: yup.string().optional() ,
@@ -25,8 +23,10 @@ export const getAllValidation = validation({
 
 export const getAll:RequestHandler = async (req:Request<{},{},{},IQueryProps>, res:Response) => { 
     
-    const result = await CidadesProvider.getAll(req.query.page || 1, req.query.limit || 7 , req.query.filter || '' , req.query.id || 0);
-    const count = await CidadesProvider.count(req.query.filter);
+    const result = await LeiturasProvider.getAll(req.query.page || 1, req.query.limit || 7 , req.query.filter || '' );
+    const count = await LeiturasProvider.count(req.query.filter);
+
+    console.log(result,count);
 
     if (result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
