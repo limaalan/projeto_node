@@ -2,14 +2,14 @@ import { Request, RequestHandler, Response, query } from "express"
 import { StatusCodes } from "http-status-codes";
 import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
-import {  LeiturasProvider} from "../../database/providers/leituras";
+import { PessoasProvider } from "../../database/providers/pessoas";
 
 interface IParamsProps {
-    id_leitura? : number ;
+    id? : number ;
 }
 
 const paramsValidation:yup.ObjectSchema<IParamsProps> = yup.object().shape({
-    id_leitura: yup.number().required().integer(),
+    id: yup.number().required().integer().moreThan(0),
 });//Cria a validação dos parâmetros
 
 
@@ -19,15 +19,15 @@ export const deleteByIdValidation = validation({
 
 export const deleteById:RequestHandler = async (req:Request<IParamsProps>, res:Response) => { 
 
-    if (!req.params.id_leitura) { 
+    if (!req.params.id) { 
         return res.status(StatusCodes.BAD_REQUEST).json({
             errors:{
-                default:"O Parâmetro Id_leitura é necessário"
+                default:"O Parâmetro Id é necessário"
             }
         });
     }; // Nunca vai acontecer isso aqui
 
-    const result = await LeiturasProvider.deleteById(req.params.id_leitura);
+    const result = await PessoasProvider.deleteById(req.params.id);
     if (result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors:{

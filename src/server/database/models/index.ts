@@ -1,1 +1,3 @@
-export * from './Leitura'
+export * from './Cidade'; 
+export * from './Pessoa';
+export * from './Usuario';

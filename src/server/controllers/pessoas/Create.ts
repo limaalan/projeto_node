@@ -2,17 +2,16 @@ import { Request, RequestHandler, Response, json, query } from "express"
 import { StatusCodes } from "http-status-codes";
 import * as yup from 'yup';
 import { validation  } from "../../shared/middlewares";
-import { ILeitura } from "../../database/models";
-import { LeiturasProvider } from "../../database/providers/leituras";
+import { IPessoa } from "../../database/models";
+import { PessoasProvider } from "../../database/providers/pessoas";
 
 
-interface IBodyProps extends Omit<ILeitura,'id_leitura'> {}
+interface IBodyProps extends Omit<IPessoa,'id'> {}
 
 const bodyValidation:yup.ObjectSchema<IBodyProps> = yup.object().shape({
-    id_placa : yup.number().required().integer(),
-    temperatura: yup.number().required(),
-    humidade: yup.number().required().lessThan(100) ,
-    data: yup.date().required(),
+    email : yup.string().required().email(),
+    cidadeId: yup.number().required().integer().moreThan(0),
+    nomeCompleto: yup.string().required().min(3).max(150) ,
 });//Cria a validação do body
 
 export const createValidation = validation({
@@ -21,7 +20,7 @@ export const createValidation = validation({
 
 export const create:RequestHandler = async (req:Request<{},{},IBodyProps>, res) => { 
    
-    const result = await LeiturasProvider.create(req.body); // Tenta criar leitura
+    const result = await PessoasProvider.create(req.body); // Tenta criar pessoa
     if( result instanceof Error) { // Caso erro, retorna mensagem de erro da provider
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {
@@ -31,6 +30,6 @@ export const create:RequestHandler = async (req:Request<{},{},IBodyProps>, res) 
         })
     }
 
-    return res.status(StatusCodes.CREATED).json(result); // Caso deu certo retorna o id da leitura
+    return res.status(StatusCodes.CREATED).json(result); // Caso deu certo retorna o id da cidade criada
 
 }
